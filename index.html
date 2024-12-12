@@ -278,28 +278,36 @@
             resetButton.style.display = 'none';
         });
 
-        const createSnowflake = () => {
-            const snowflake = document.createElement('div');
-            snowflake.classList.add('snowflake');
-            document.body.appendChild(snowflake);
+    let activeSnowflakes = 0; // Counter to track active snowflakes
+const maxSnowflakes = 100; // Maximum number of snowflakes
 
-            const size = Math.random() * 30 + 10;
-            const opacity = Math.random() * 0.5 + 0.5;
-            const startPosition = Math.random() * window.innerWidth;
-            const animationDuration = Math.random() * 6 + 4;
+const createSnowflake = () => {
+    if (activeSnowflakes >= maxSnowflakes) return; // Stop creating new snowflakes if the limit is reached
 
-            snowflake.style.width = `${size}px`;
-            snowflake.style.height = `${size}px`;
-            snowflake.style.left = `${startPosition}px`;
-            snowflake.style.animationDuration = `${animationDuration}s`;
-            snowflake.style.opacity = `${opacity}`;
+    const snowflake = document.createElement('div');
+    snowflake.classList.add('snowflake');
+    document.body.appendChild(snowflake);
+    activeSnowflakes++; // Increment the counter
 
-            snowflake.addEventListener('animationend', () => {
-                snowflake.remove();
-            });
-        };
+    const size = Math.random() * 30 + 10;
+    const opacity = Math.random() * 0.5 + 0.5;
+    const startPosition = Math.random() * window.innerWidth;
+    const animationDuration = Math.random() * 6 + 4;
 
-        setInterval(createSnowflake, 300);
+    snowflake.style.width = `${size}px`;
+    snowflake.style.height = `${size}px`;
+    snowflake.style.left = `${startPosition}px`;
+    snowflake.style.animationDuration = `${animationDuration}s`;
+    snowflake.style.opacity = `${opacity}`;
+
+    snowflake.addEventListener('animationend', () => {
+        snowflake.remove();
+        activeSnowflakes--; // Decrement the counter when a snowflake is removed
+    });
+};
+
+setInterval(createSnowflake, 300);
+
     </script>
 </body>
 </html>

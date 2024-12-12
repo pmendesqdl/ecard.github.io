@@ -78,11 +78,11 @@
         }
 
         .front {
-            background: url('https://github.com/pmendesqdl/ecard.github.io/blob/main/QDL-Xmas%20back%202.png?raw=true') center/cover no-repeat;
+            background: url('https://d14k3pdvyik68f.cloudfront.net/uploads/media/6c3dd18a5293346bc8288613b996fae5.png') center/cover no-repeat;
         }
 
         .back {
-            background: url('https://d14k3pdvyik68f.cloudfront.net/uploads/media/83210724b7df8925ef4164c67e9b9417_jnV3zdc.png') center/cover no-repeat;
+            background: url('https://d14k3pdvyik68f.cloudfront.net/uploads/media/1f92b8dbddf5f97bd5a986910994c600.png') center/cover no-repeat;
             transform: rotateY(180deg);
         }
 
@@ -94,7 +94,7 @@
             width: 50%;
             max-width: 600px;
             aspect-ratio: 3 / 2;
-            background: url('https://d14k3pdvyik68f.cloudfront.net/uploads/media/0493727db4fbfb45200e3314707d10f3.png') center/cover no-repeat;
+            background: url('https://d14k3pdvyik68f.cloudfront.net/uploads/media/f09e7d1101d1d97f31cf3c02f20c1c9a.png') center/cover no-repeat;
             cursor: pointer;
             opacity: 1;
             transition: opacity 0.5s ease;
@@ -107,29 +107,31 @@
             transform: translateX(-50%);
             display: flex;
             gap: 10px;
+            z-index: 10; /* Ensure buttons are above snowflakes */
         }
 
         #action-button {
             padding: 10px 20px;
-            font-size: 1.5vw;
+            font-size: 1rem;
             border: none;
             text-transform: uppercase;
             cursor: pointer;
             border-radius: 5px;
-            background-color: #6F6F6F;
-            color: white;
+            background-color: #fff;
+            color: #6F6F6F;
         }
 
         #action-button:hover {
-            background-color: #555555;
+            background-color: #6F6F6F;
+          color:#fff;
         }
 
         #reset-button {
             padding: 10px 20px;
             font-size: 1.5vw;
-            border: 2px solid #6F6F6F;
+            border: 2px solid #fff;
             background-color: transparent;
-            color: #6F6F6F;
+            color: #fff;
             cursor: pointer;
             border-radius: 5px;
             display: none;
@@ -145,6 +147,7 @@
             position: absolute;
             background: url('https://d14k3pdvyik68f.cloudfront.net/uploads/media/97763ffc141691b0da3b893d5acb7104.png') center/cover no-repeat;
             animation: fall linear infinite;
+            z-index: 1; /* Ensure snowflakes are below buttons */
         }
 
         @keyframes fall {
@@ -197,15 +200,15 @@
                 width: 80%;
             }
 
-            #action-button, #reset-button {
+          /*  #action-button, #reset-button {
                 font-size: 5vw;
-            }
+            }*/
         }
     </style>
 </head>
 <body>
     <div id="greeting">
-        <p>Dear <span class="fname" id="fname"></span>,</p>
+      <p>Dear <span style="margin-right:6px;"></span><span class="fname" id="fname"></span>,</p>
         <p>Quinta do Lago wishes you a </p>
     </div>
 

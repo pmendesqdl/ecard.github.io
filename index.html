@@ -1,1 +1,300 @@
-<h1>Hello World</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winter E-Card Animation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Corinthia:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: "Abril Fatface", serif;
+            font-weight: 400;
+            font-style: normal;
+            overflow: hidden;
+            background-color: #193c68;
+        }
+
+        #greeting {
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            text-transform: uppercase;
+            color: white;
+            font-size: 2vw;
+        }
+
+        #greeting .fname {
+            font-family: "Corinthia", cursive;
+            text-transform: none;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 3vw;
+        }
+
+        #greeting p {
+            margin: 0px;
+        }
+
+        #card-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            max-width: 600px;
+            aspect-ratio: 3 / 2;
+            perspective: 1000px;
+            display: none;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1.75s;
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            text-align: center;
+            color: white;
+        }
+
+        .front {
+            background: url('https://d14k3pdvyik68f.cloudfront.net/uploads/media/9371ab814da9d7d597d8a3f6663e1a5e.png') center/cover no-repeat;
+        }
+
+        .back {
+            background: url('https://d14k3pdvyik68f.cloudfront.net/uploads/media/906cd62fbbe12293558160823f038c6a.png') center/cover no-repeat;
+            transform: rotateY(180deg);
+        }
+
+        #envelope {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            max-width: 600px;
+            aspect-ratio: 3 / 2;
+            background: url('https://via.placeholder.com/600x400') center/cover no-repeat;
+            cursor: pointer;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        #action-buttons {
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        #action-button {
+            padding: 10px 20px;
+            font-size: 1.5vw;
+            border: none;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: #6F6F6F;
+            color: white;
+        }
+
+        #action-button:hover {
+            background-color: #555555;
+        }
+
+        #reset-button {
+            padding: 10px 20px;
+            font-size: 1.5vw;
+            border: 2px solid #6F6F6F;
+            background-color: transparent;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            display: none;
+        }
+
+        #reset-button:hover {
+            background-color: transparent;
+            color: #6F6F6F;
+            border: 2px solid #6F6F6F;
+        }
+
+        .snowflake {
+            position: absolute;
+            background: url('https://d14k3pdvyik68f.cloudfront.net/uploads/media/97763ffc141691b0da3b893d5acb7104.png') center/cover no-repeat;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #greeting {
+                font-size: 4vw;
+            }
+
+            #greeting .fname {
+                font-size: 6vw;
+            }
+
+            #card-container {
+                width: 70%;
+            }
+
+            #envelope {
+                width: 70%;
+            }
+
+            #action-button, #reset-button {
+                font-size: 4vw;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #greeting {
+                font-size: 5vw;
+            }
+
+            #greeting .fname {
+                font-size: 7vw;
+            }
+
+            #card-container {
+                width: 80%;
+            }
+
+            #envelope {
+                width: 80%;
+            }
+
+            #action-button, #reset-button {
+                font-size: 5vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="greeting">
+        <p>Dear <span class="fname" id="fname"></span>,</p>
+        <p>Quinta do Lago wishes you a </p>
+    </div>
+
+    <div id="envelope"></div>
+
+    <div id="card-container">
+        <div class="card" id="card">
+            <div class="card-face front">
+
+            </div>
+            <div class="card-face back">
+
+            </div>
+        </div>
+    </div>
+    <div id="action-buttons">
+        <button id="action-button">Open the Envelope</button>
+        <button id="reset-button">&#x21bb;</button>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const fname = urlParams.get('fname') || 'Guest';
+        document.getElementById('fname').textContent = fname;
+
+        const card = document.getElementById('card');
+        const actionButton = document.getElementById('action-button');
+        const resetButton = document.getElementById('reset-button');
+        const envelope = document.getElementById('envelope');
+        const cardContainer = document.getElementById('card-container');
+        let isFlipped = false;
+        let isOpened = false;
+
+        actionButton.style.display = 'block';
+
+        actionButton.addEventListener('click', () => {
+            if (!isOpened) {
+                envelope.style.opacity = '0';
+                setTimeout(() => {
+                    envelope.style.display = 'none';
+                    cardContainer.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.transform = 'rotateY(180deg)';
+                        isFlipped = true;
+                        actionButton.textContent = 'Flip the Card';
+                        resetButton.style.display = 'block';
+                    }, 1200); // Flip after 1.75 seconds
+                }, 500); // Fade animation duration
+                isOpened = true;
+            } else {
+                isFlipped = !isFlipped;
+                card.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+            }
+        });
+
+        resetButton.addEventListener('click', () => {
+            isFlipped = false;
+            isOpened = false;
+            card.style.transform = 'rotateY(0deg)';
+            cardContainer.style.display = 'none';
+            envelope.style.display = 'block';
+            envelope.style.opacity = '1';
+            actionButton.style.display = 'block';
+            actionButton.textContent = 'Open the Envelope';
+            resetButton.style.display = 'none';
+        });
+
+        const createSnowflake = () => {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            document.body.appendChild(snowflake);
+
+            const size = Math.random() * 30 + 10;
+            const opacity = Math.random() * 0.5 + 0.5;
+            const startPosition = Math.random() * window.innerWidth;
+            const animationDuration = Math.random() * 6 + 4;
+
+            snowflake.style.width = `${size}px`;
+            snowflake.style.height = `${size}px`;
+            snowflake.style.left = `${startPosition}px`;
+            snowflake.style.animationDuration = `${animationDuration}s`;
+            snowflake.style.opacity = `${opacity}`;
+
+            snowflake.addEventListener('animationend', () => {
+                snowflake.remove();
+            });
+        };
+
+        setInterval(createSnowflake, 300);
+    </script>
+</body>
+</html>
